@@ -28,4 +28,24 @@ class Vehiculo{
         return this.duenyo;
     }
 
+    setId(newId){
+        this.id = newId;
+    }
+
+    setNombre(newNombre){
+        this.nombre = newNombre;
+    }
+
+    setmatricula(newMatricula){
+        this.matricula = newMatricula;
+    }
+
+    setCombustible(newCombustible){
+        this.combustible = newCombustible;
+    }
+
+    setDuenyo(newDuenyo){
+        this.duenyo = newDuenyo;
+    }
+
 }

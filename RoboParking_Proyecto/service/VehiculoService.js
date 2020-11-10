@@ -1,13 +1,10 @@
 class VehiculoService{
 
-    constructor(){
-        this.vehiculoRepository = new VehiculoRepository;
+    constructor(vehiculoRepository){
+        this.vehiculoRepository = vehiculoRepository;
     }
 
     agregarVehiculo(v1){
-
-        let comprobar = false;
-
         this.vehiculoRepository.agregarVehiculo(v1);
     }
 
@@ -25,51 +22,6 @@ class VehiculoService{
 
     encontrarTodos(){
         return this.vehiculoRepository.encontrarTodos();
-    }
-
-    comprobarMotocicletas(){
-
-        let contador = 0;
-
-        for (const vehiculo of this.encontrarTodos) {
-            if(vehiculo instanceof Motocicleta)
-                contador++;
-        }
-
-        if(contador <= 15)
-            return false;
-
-        return true;
-    }
-
-    comprobarTrurismos(){
-
-        let contador = 0;
-
-        for (const vehiculo of this.encontrarTodos) {
-            if(vehiculo instanceof Turismo)
-                contador++;
-        }
-
-        if(contador <= 15)
-            return false;
-
-        return true;
-    }
-
-    comprobarCaravanas(){
-
-        let contador = 0;
-
-        for (const vehiculo of this.encontrarTodos) {
-            if(vehiculo instanceof Caravana)
-                contador++;
-        }
-
-        if(contador <= 15)
-            return false;
-
-        return true;
     }
 
 }

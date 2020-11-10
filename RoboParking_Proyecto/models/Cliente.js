@@ -6,27 +6,51 @@ class Cliente extends Usuario{
     }
 
     get id(){
-        return this.id;
+        return super.id();
     }
 
     get nombre(){
-        return this.nombre;
+        return super.nombre();
     }
 
     get apellido1(){
-        return this.apellido1;
+        return super.apellido1();
     }
 
     get apellido2(){
-        return this.apellido2;
+        return super.apellido2();
     }
 
     get password(){
-        return this.password;
+        return super.password();
     }
 
     get vehiculos(){
         return this.vehiculos;
+    }
+
+    setId(newId){
+        super.setId(newId);
+    }
+
+    setNombre(newNombre){
+        super.setNombre(newNombre);
+    }
+
+    setApellido1(newApellido){
+        super.setApellido1(newApellido);
+    }
+
+    setApellido2(newApellido){
+        super.setApellido2(newApellido);
+    }
+
+    setPassword(newPassword){
+        super.setPassword(newPassword);
+    }
+
+    setVehiculos(v1){
+        this.vehiculos = v1;
     }
 
 }

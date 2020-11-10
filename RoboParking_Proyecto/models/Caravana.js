@@ -5,23 +5,43 @@ class Caravana extends Vehiculo{
     }
 
     get id(){
-        return this.id;
+        return super.id();
     }
 
     get nombre(){
-        return this.nombre;
+        return super.nombre();
     }
 
     get matricula(){
-        return this.matricula;
+        return super.matricula();
     }
 
     get combustible(){
-        return this.combustible;
+        return super.combustible();
     }
 
     get duenyo(){
-        return this.duenyo;
+        return super.duenyo();
+    }
+
+    setId(newId){
+        super.setId(newId);
+    }
+
+    setNombre(newNombre){
+        super.setNombre(newNombre);
+    }
+
+    setmatricula(newMatricula){
+        super.setMatricula(newMatricula);
+    }
+
+    setCombustible(newCombustible){
+        super.setCombustible(newCombustible);
+    }
+
+    setDuenyo(newDuenyo){
+        this.setDuenyo(newDuenyo);
     }
 
 }

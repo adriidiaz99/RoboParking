@@ -4,7 +4,23 @@ class UsuarioRepository{
         this.listaUsuario = [];
     }
 
+    buscarUltimoId(){
+
+        let ultimoId = 0;
+
+        this.listaUsuario.forEach(element => {
+            if(element.id() > ultimoId)
+                ultimoId = element.id();
+        });
+
+        if(ultimoId = 0)
+            return 1;
+
+        return ultimoId;
+    }
+
     agregarUsuario(v1){
+        v1.setId(this.buscarUltimoId());
         this.listaUsuario.push(v1);
     }
 
@@ -17,11 +33,14 @@ class UsuarioRepository{
     }
 
     encontrarPorId(id){
-        for(let i = 0; i < this.listaUsuario.length; i++){
-            if(id === this.listaUsuario[i].id()){
-                return this.listaUsuario[i];
+        if(this.listaUsuario.length > 0){
+            for(let i = 0; i < this.listaUsuario.length; i++){
+                if(id === this.listaUsuario[i].id()){
+                    return this.listaUsuario[i];
+                }
             }
         }
+        return 0;
     }
 
     encontrarTodos(){

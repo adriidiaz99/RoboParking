@@ -1,7 +1,7 @@
 class UsuarioService{
 
-    constructor(){
-        this.usuarioRepository = new UsuarioRepository;
+    constructor(usuarioRepository){
+        this.usuarioRepository = usuarioRepository;
     }
 
     agregarVehiculo(v1){

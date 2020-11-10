@@ -32,4 +32,23 @@ class Usuario{
         return this.password;
     }
 
+    setId(newId){
+        this.id = newId;
+    }
+
+    setNombre(newNombre){
+        this.nombre = newNombre;
+    }
+
+    setApellido1(newApellido){
+        this.apellido1 = newApellido;
+    }
+
+    setApellido2(newApellido){
+        this.apellido2 = newApellido;
+    }
+
+    setPassword(newPassword){
+        this.password = newPassword;
+    }
 }
