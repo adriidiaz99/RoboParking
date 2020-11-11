@@ -42,7 +42,7 @@ class ParkingService{
                 comprobar = true;
         }
 
-        if(comprobar){
+        if(comprobar && this.parking.encontrarPorNPlaza(nPlaza).vehiculo() === null){
 
             this.parking.encontrarPorNPlaza(nPlaza).setVehiculo(v1);
             this.parking.encontrarPorNPlaza(nPlaza).setPin(Math.random() * (999999 - 100000) + 100000);
