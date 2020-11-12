@@ -50,6 +50,10 @@ class ParkingService{
         }
     }
 
+    retirarVehiculo(matricula, numeroPlaza, pinIntroducido){
+        
+    }
+
     comprobarMotocicletas(){
         let plazasTotal = 15;
 
