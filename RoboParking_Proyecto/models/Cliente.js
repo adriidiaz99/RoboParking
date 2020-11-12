@@ -1,52 +1,54 @@
-class Cliente extends Usuario{
+import Usuario from "./Usuario.js"
 
-    constructor(id, nombre, apellido1, apellido2, password){
+export default class Cliente extends Usuario{
+
+    constructor(id, nombre, apellido1, apellido2, password, vehiculo){
         super(id, nombre, apellido1, apellido2, password);
-        this.vehiculos = [];
+        this.vehiculo = vehiculo;
     }
 
-    get id(){
-        return super.id();
+    get getId(){
+        return this.id;
     }
 
-    get nombre(){
-        return super.nombre();
+    get getNombre(){
+        return this.nombre;
     }
 
-    get apellido1(){
-        return super.apellido1();
+    get getApellido1(){
+        return this.apellido1;
     }
 
-    get apellido2(){
-        return super.apellido2();
+    get getApellido2(){
+        return this.apellido2;
     }
 
-    get password(){
-        return super.password();
+    get getPassword(){
+        return this.password;
     }
 
-    get vehiculos(){
-        return this.vehiculos;
+    get getVehiculo(){
+        return this.vehiculo;
     }
 
     setId(newId){
-        super.setId(newId);
+        this.setId(newId);
     }
 
     setNombre(newNombre){
-        super.setNombre(newNombre);
+        this.setNombre(newNombre);
     }
 
     setApellido1(newApellido){
-        super.setApellido1(newApellido);
+        this.setApellido1(newApellido);
     }
 
     setApellido2(newApellido){
-        super.setApellido2(newApellido);
+        this.setApellido2(newApellido);
     }
 
     setPassword(newPassword){
-        super.setPassword(newPassword);
+        this.setPassword(newPassword);
     }
 
     setVehiculos(v1){

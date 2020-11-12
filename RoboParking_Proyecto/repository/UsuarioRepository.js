@@ -1,4 +1,4 @@
-class UsuarioRepository{
+export default class UsuarioRepository{
 
     constructor(){
         this.listaUsuario = [];
@@ -9,8 +9,8 @@ class UsuarioRepository{
         let ultimoId = 0;
 
         this.listaUsuario.forEach(element => {
-            if(element.id() > ultimoId)
-                ultimoId = element.id();
+            if(element.getId > ultimoId)
+                ultimoId = element.getId;
         });
 
         if(ultimoId = 0)
@@ -29,13 +29,13 @@ class UsuarioRepository{
     }
 
     editarUsuario(v1){
-        this.listaUsuario[this.listaUsuario.indexOf(this.encontrarPorId(v1.id()))] = v1;
+        this.listaUsuario[this.listaUsuario.indexOf(this.encontrarPorId(v1.getId))] = v1;
     }
 
     encontrarPorId(id){
         if(this.listaUsuario.length > 0){
             for(let i = 0; i < this.listaUsuario.length; i++){
-                if(id === this.listaUsuario[i].id()){
+                if(id === this.listaUsuario[i].getId){
                     return this.listaUsuario[i];
                 }
             }

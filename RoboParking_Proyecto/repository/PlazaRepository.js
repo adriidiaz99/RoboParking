@@ -1,4 +1,4 @@
-class PlazaRepository{
+export default class PlazaRepository{
 
     constructor(){
         this.parking = [];
@@ -9,14 +9,14 @@ class PlazaRepository{
         let ultimoId = 0;
 
         this.parking.forEach(element => {
-            if(element.nPlaza() > ultimoId)
-                ultimoId = element.nPlaza();
+            if(element.getNPlaza > ultimoId)
+                ultimoId = element.getNPlaza;
         });
 
-        if(ultimoId = 0)
+        if(ultimoId === 0)
             return 1;
 
-        return ultimoId;
+        return ultimoId+1;
     }
 
     agregarPlaza(v1){
@@ -29,18 +29,20 @@ class PlazaRepository{
     }
 
     editarPlaza(v1){
-        this.parking[this.parking.indexOf(this.encontrarPorNPlaza(v1.nPlaza()))] = v1;
+        this.parking[this.parking.indexOf(this.encontrarPorNPlaza(v1.getNPlaza))] = v1;
     }
 
     encontrarPorNPlaza(nPlaza){
+    let plaza = null; 
+
         if(this.parking.length > 0){
             for(let i = 0; i < this.parking.length; i++){
-                if(nPlaza === this.parking[i].nPlaza()){
-                    return this.parking[i];
+                if(nPlaza === this.parking[i].getNPlaza){
+                    plaza = this.parking[i];
                 }
             }
         }
-        return 0;
+        return plaza;
     }
 
     encontrarTodos(){

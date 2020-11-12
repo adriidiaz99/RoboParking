@@ -1,4 +1,4 @@
-class VehiculoRepository{
+export default class VehiculoRepository{
 
     constructor(){
         this.listaVehiculos = [];
@@ -9,8 +9,8 @@ class VehiculoRepository{
         let ultimoId = 0;
 
         parking.forEach(element => {
-            if(element.id() > ultimoId)
-                ultimoId = element.id();
+            if(element.getId > ultimoId)
+                ultimoId = element.getId;
         });
 
         if(ultimoId = 0)
@@ -29,13 +29,13 @@ class VehiculoRepository{
     }
 
     editarVehiculo(v1){
-        this.listaVehiculos[this.listaVehiculos.indexOf(this.encontrarPorId(v1.id()))] = v1;
+        this.listaVehiculos[this.listaVehiculos.indexOf(this.encontrarPorId(v1.getId))] = v1;
     }
 
     encontrarPorId(id){
         if(this.listaVehiculos.length > 0){
             for(let i = 0; i < this.listaVehiculos.length; i++){
-                if(id === this.listaVehiculos[i].id()){
+                if(id === this.listaVehiculos[i].getId){
                     return this.listaVehiculos[i];
                 }
             }

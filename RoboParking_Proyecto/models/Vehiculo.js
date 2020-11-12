@@ -1,4 +1,4 @@
-class Vehiculo{
+export default class Vehiculo{
 
     constructor (id, nombre, matricula, combustible, duenyo) {
         this.id = id;
@@ -8,23 +8,23 @@ class Vehiculo{
         this.duenyo = duenyo;
       }
 
-    get id(){
+    get getId(){
         return this.id;
     }
 
-    get nombre(){
+    get getNombre(){
         return this.nombre;
     }
 
-    get matricula(){
+    get getMatricula(){
         return this.matricula;
     }
 
-    get combustible(){
+    get getCombustible(){
         return this.combustible;
     }
 
-    get duenyo(){
+    get getDuenyo(){
         return this.duenyo;
     }
 

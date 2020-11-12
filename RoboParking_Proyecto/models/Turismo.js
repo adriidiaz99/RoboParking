@@ -1,31 +1,33 @@
-class Turismo extends Vehiculo{
+import Vehiculo from "./Vehiculo.js"
+
+export default class Turismo extends Vehiculo{
 
     constructor(id, nombre, matricula, combustible, duenyo, nPuertas){
         super(id, nombre, matricula, combustible, duenyo);
         this.nPuertas = nPuertas;
     }
 
-    get id(){
+    get getId(){
         return super.id();
     }
 
-    get nombre(){
+    get getNombre(){
         return super.nombre();
     }
 
-    get matricula(){
+    get getMatricula(){
         return super.matricula();
     }
 
-    get combustible(){
+    get getCombustible(){
         return super.combustible();
     }
 
-    get duenyo(){
+    get getDuenyo(){
         return super.duenyo();
     }
 
-    get nPuertas(){
+    get getNPuertas(){
         return this.nPuertas;
     }
 

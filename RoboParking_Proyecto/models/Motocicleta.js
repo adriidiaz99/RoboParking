@@ -1,27 +1,29 @@
-class Motocicleta extends Vehiculo{
+import Vehiculo from "./Vehiculo.js"
+
+export default class Motocicleta extends Vehiculo{
 
     constructor(id, nombre, matricula, combustible, duenyo){
         super(id, nombre, matricula, combustible, duenyo);
     }
 
-    get id(){
-        return super.id();
+    get getId(){
+        return this.id;
     }
 
-    get nombre(){
-        return super.nombre();
+    get getNombre(){
+        return this.nombre;
     }
 
-    get matricula(){
-        return super.matricula();
+    get getMatricula(){
+        return this.matricula;
     }
 
-    get combustible(){
-        return super.combustible();
+    get getCombustible(){
+        return this.combustible;
     }
 
-    get duenyo(){
-        return super.duenyo();
+    get getDuenyo(){
+        return this.duenyo;
     }
 
     setId(newId){

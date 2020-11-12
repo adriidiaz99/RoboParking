@@ -1,7 +1,13 @@
-class ParkingService{
+import Motocicleta from "../models/Motocicleta.js";
+import Turismo from "../models/Turismo.js";
+import Caravana from "../models/Caravana.js";
+import PlazaRepository from "../repository/PlazaRepository.js"
 
-    constructor(parking){
+export default class PlazaService{
+
+    constructor(parking, servicioTicket){
         this.parking = parking;
+        this.servicioTicket = servicioTicket;
     }
 
     agregarPlaza(v1){
@@ -28,7 +34,7 @@ class ParkingService{
         let comprobar = false;
 
         if(v1 instanceof Turismo){
-            if(this.comprobarTrurismos())
+            if(this.comprobarTurismos())
                 comprobar = true;
         }
 
@@ -42,31 +48,48 @@ class ParkingService{
                 comprobar = true;
         }
 
-        if(comprobar){
+        if(comprobar && this.encontrarPorNPlaza(nPlaza).getVehiculo.getId === 0){
 
             this.parking.encontrarPorNPlaza(nPlaza).setVehiculo(v1);
-            this.parking.encontrarPorNPlaza(nPlaza).setPin(Math.random() * (999999 - 100000) + 100000);
+            this.parking.encontrarPorNPlaza(nPlaza).setPin(Math.round(Math.random() * (999999 - 100000) + 100000), 0);
+            return true;
 
         }
+
+        return false;
     }
 
     retirarVehiculo(matricula, numeroPlaza, pinIntroducido){
+
+        let plaza = this.encontrarPorNPlaza(numeroPlaza);
+
+        if(plaza !== null){
+            console.log(plaza.getVehiculo.getMatricula);
+            if(plaza.getVehiculo.getMatricula === matricula){
+                if(plaza.getPin === pinIntroducido){
+                    this.encontrarPorNPlaza(numeroPlaza).setVehiculo(null);
+                    return true;
+                }
+            }
+        } else{
+            return false;
+        }
         
     }
 
     comprobarMotocicletas(){
         let plazasTotal = 15;
 
-        if(this.contarMotocicletas() <= plazasTotal)
+        if(this.contarMotocicletas() >= plazasTotal)
             return false;
 
         return true;
     }
 
-    comprobarTrurismos(){
-        plazasTotal = 15;
+    comprobarTurismos(){
+        let plazasTotal = 15;
 
-        if(this.contarTurismos() <= plazasTotal)
+        if(this.contarTurismos() >= plazasTotal)
             return false;
 
         return true;
@@ -75,7 +98,7 @@ class ParkingService{
     comprobarCaravanas(){
         let plazasTotal = 15;
 
-        if(this.contarCaravanas() <= plazasTotal)
+        if(this.contarCaravanas() >= plazasTotal)
             return false;
 
         return true;
@@ -85,7 +108,7 @@ class ParkingService{
         let contador = 0;
 
         for (const plaza of this.encontrarTodos()) {
-            if(plaza.vehiculo() instanceof Turismo)
+            if(plaza.getVehiculo instanceof Turismo)
                 contador++;
         }
 
@@ -98,7 +121,7 @@ class ParkingService{
         let contador = 0;
 
         for (const plaza of this.encontrarTodos()) {
-            if(plaza.vehiculo() instanceof Caravana)
+            if(plaza.getVehiculo instanceof Caravana)
                 contador++;
         }
 
@@ -110,7 +133,7 @@ class ParkingService{
         let contador = 0;
 
         for (const plaza of this.encontrarTodos()) {
-            if(plaza.vehiculo() instanceof Motocicleta)
+            if(plaza.getVehiculo instanceof Motocicleta)
                 contador++;
         }
 
@@ -124,7 +147,11 @@ class ParkingService{
         console.log("Plazas libres");
         console.log("Motocicletas: " +(plazasTotal - this.contarMotocicletas()));
         console.log("Turismos: " +(plazasTotal - this.contarTurismos()));
-        console.log("Turismos: " +(plazasTotal - this.contarTurismos()));
+        console.log("Caravanas: " +(plazasTotal - this.contarCaravanas()));
+    }
+
+    imprimirTicketMasReciente(nPlaza, matricula){
+        this.servicioTicket.imprimirTicket(this.servicioTicket.encontrarTicketMasReciente(nPlaza, matricula));
     }
 
 }

@@ -1,4 +1,4 @@
-class Ticket{
+export default class Ticket{
 
     constructor(id, nPlaza, matricula, pin, duenyo){
         this.id = id;
@@ -9,27 +9,27 @@ class Ticket{
         this.fechaDeposito = new Date();
     }
 
-    get id(){
+    get getId(){
         return this.id;
     }
 
-    get matricula(){
+    get getMatricula(){
         return this.matricula;
     }
 
-    get duenyo(){
+    get getDuenyo(){
         return this.duenyo;
     }
 
-    get pin(){
+    get getPin(){
         return this.pin;
     }
 
-    get nPlaza(){
+    get getNPlaza(){
         return this.nPlaza;
     }
 
-    get fechaDeposito(){
+    get getFechaDeposito(){
         return this.fechaDeposito;
     }
 

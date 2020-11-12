@@ -1,30 +1,43 @@
-class Cobro{
+export default class Cobro{
 
-    constructor(id, nPlaza, precioPagar){
+    constructor(id, nPlaza, matricula, cCobro){
         this.id = id;
         this.nPlaza = nPlaza;
+        this.matricula = matricula;
+        this.cCobro = cCobro;
         this.fechaCobro = new Date();
-        this.precioPagar = precioPagar;
     }
 
-    get id(){
+    get getId(){
         return this.id;
     }
 
-    get nPlaza(){
+    get getMatricula(){
+        return this.matricula;
+    }
+
+    get getCCobro(){
+        return this.cCobro;
+    }
+
+    get getNPlaza(){
         return this.nPlaza;
     }
 
-    get fechaCobro(){
+    get getFechaCobro(){
         return this.fechaCobro;
-    }
-
-    get precioPagar(){
-        return this.precioPagar;
     }
 
     setId(newId){
         this.id = newId;
+    }
+
+    setMatricula(newMatricula){
+        this.matricula = newMatricula;
+    }
+
+    setCCobro(newCCobro){
+        this.cCobro = newCCobro;
     }
 
     setNPlaza(newNPlaza){
@@ -34,10 +47,5 @@ class Cobro{
     setFechaCobro(d1){
         this.fechaCobro = d1;
     }
-
-    setPrecioPagar(pg){
-        this.precioPagar = pg;
-    }
-
 
 }

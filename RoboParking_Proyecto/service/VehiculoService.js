@@ -1,4 +1,4 @@
-class VehiculoService{
+export default class VehiculoService{
 
     constructor(vehiculoRepository){
         this.vehiculoRepository = vehiculoRepository;

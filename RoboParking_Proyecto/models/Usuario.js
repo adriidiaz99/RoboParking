@@ -1,8 +1,8 @@
-class Usuario{
+export default class Usuario{
 
     constructor(id, nombre, apellido1, apellido2, password) {
         if (this.constructor == Usuario) {
-          throw new Error("Abstract classes can't be instantiated.");
+          throw new Error("Abstract export default classes can't be instantiated.");
         } else {
           this.id = id;
           this.nombre = nombre;
@@ -12,23 +12,23 @@ class Usuario{
         }
     }
 
-    get id(){
+    get getId(){
         return this.id;
     }
 
-    get nombre(){
+    get getNombre(){
         return this.nombre;
     }
 
-    get apellido1(){
+    get getApellido1(){
         return this.apellido1;
     }
 
-    get apellido2(){
+    get getApellido2(){
         return this.apellido2;
     }
 
-    get password(){
+    get getPassword(){
         return this.password;
     }
 

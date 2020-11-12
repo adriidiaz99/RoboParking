@@ -1,4 +1,4 @@
-class TicketRepository{
+export default class TicketRepository{
     constructor(){
         this.listaTicket = [];
     }
@@ -8,14 +8,14 @@ class TicketRepository{
         let ultimoId = 0;
 
         this.listaTicket.forEach(element => {
-            if(element.id() > ultimoId)
-                ultimoId = element.id();
+            if(element.getId > ultimoId)
+                ultimoId = element.getId;
         });
 
-        if(ultimoId = 0)
+        if(ultimoId == 0)
             return 1;
 
-        return ultimoId;
+        return ultimoId++;
     }
 
     agregarTicket(v1){
@@ -28,13 +28,13 @@ class TicketRepository{
     }
 
     editarTicket(v1){
-        this.listaTicket[this.listaTicket.indexOf(this.encontrarPorId(v1.id()))] = v1;
+        this.listaTicket[this.listaTicket.indexOf(this.encontrarPorId(v1.getId))] = v1;
     }
 
     encontrarPorId(id){
         if(this.listaTicket.length > 0){
             for(let i = 0; i < this.listaTicket.length; i++){
-                if(id === this.listaTicket[i].id()){
+                if(id === this.listaTicket[i].getId){
                     return this.listaTicket[i];
                 }
             }

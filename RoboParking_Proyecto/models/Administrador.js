@@ -1,26 +1,28 @@
-class Administrador extends Usuario{
+import Usuario from "./Usuario.js"
+
+export default class Administrador extends Usuario{
 
     constructor(id, nombre, apellido1, apellido2, password){
         super(id, nombre, apellido1, apellido2, password);
     }
 
-    get id(){
+    get getId(){
         return super.id();
     }
 
-    get nombre(){
+    get getNombre(){
         return super.nombre();
     }
 
-    get apellido1(){
+    get getApellido1(){
         return super.apellido1();
     }
 
-    get apellido2(){
+    get getApellido2(){
         return super.apellido2();
     }
 
-    get password(){
+    get getPassword(){
         return super.password();
     }
 

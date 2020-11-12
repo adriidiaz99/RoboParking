@@ -1,15 +1,15 @@
-class CobroRepository{
-
+export default class CobroRepository{
+    
     constructor(){
-        this.listaCobros = [];
+        this.listaCobro = [];
     }
 
     buscarUltimoId(){
 
         let ultimoId = 0;
 
-        this.parking.forEach(element => {
-            if(element.id() > ultimoId)
+        this.listaCobro.forEach(element => {
+            if(element.getId > ultimoId)
                 ultimoId = element.id();
         });
 
@@ -21,22 +21,22 @@ class CobroRepository{
 
     agregarCobro(v1){
         v1.setId(this.buscarUltimoId());
-        this.parking.push(v1);
+        this.listaCobro.push(v1);
     }
 
     eliminarCobro(v1){
-        this.parking.splice(v1);
+        this.listaCobro.splice(v1);
     }
 
     editarCobro(v1){
-        this.parking[this.parking.indexOf(this.encontrarPorId(v1.id()))] = v1;
+        this.listaCobro[this.listaCobro.indexOf(this.encontrarPorId(v1.getId))] = v1;
     }
 
-    encontrarPorId(newId){
-        if(this.parking.length > 0){
-            for(let i = 0; i < this.parking.length; i++){
-                if(id === this.parking[i].id()){
-                    return this.parking[i];
+    encontrarPorId(id){
+        if(this.listaCobro.length > 0){
+            for(let i = 0; i < this.listaCobro.length; i++){
+                if(id === this.listaCobro[i].getId){
+                    return this.listaCobro[i];
                 }
             }
         }
@@ -44,8 +44,6 @@ class CobroRepository{
     }
 
     encontrarTodos(){
-        return this.parking;
+        return this.listaCobro;
     }
-
-
 }

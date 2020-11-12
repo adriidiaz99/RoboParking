@@ -1,26 +1,28 @@
-class Plaza{
+import Vehiculo from "./Vehiculo.js";
 
-    constructor(nPlaza, vehiculo, cliente, pin, ocupado){
+export default class Plaza{
+
+    constructor(nPlaza, cliente, pin, ocupado){
         this.nPlaza = nPlaza;
-        this.vehiculo = vehiculo;
+        this.vehiculo = new Vehiculo(0, "", "", 0, "");
         this.cliente = cliente;
         this.pin = pin;
         this.ocupado = ocupado;
     }
 
-    get nPlaza(){
+    get getNPlaza(){
         return this.nPlaza;
     }
 
-    get vehiculo(){
+    get getVehiculo(){
         return this.vehiculo;
     }
 
-    get cliente(){
+    get getCliente(){
         return this.cliente;
     }
 
-    get pin(){
+    get getPin(){
         return this.pin;
     }
 

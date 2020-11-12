@@ -1,18 +1,18 @@
-class UsuarioService{
+export default class UsuarioService{
 
     constructor(usuarioRepository){
         this.usuarioRepository = usuarioRepository;
     }
 
-    agregarVehiculo(v1){
+    agregarUsuario(v1){
         this.usuarioRepository.agregarUsuario(v1);
     }
 
-    eliminarVehiculo(v1){
+    eliminarUsuario(v1){
         this.usuarioRepository.eliminarUsuario(v1);
     }
 
-    editarVehiculo(v1){
+    editarUsuario(v1){
         this.usuarioRepository.editarUsuario(v1);
     }
 

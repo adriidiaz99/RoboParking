@@ -1,26 +1,28 @@
-class Caravana extends Vehiculo{
+import Vehiculo from "./Vehiculo.js"
+
+export default class Caravana extends Vehiculo{
 
     constructor(id, nombre, matricula, combustible, duenyo){
         super(id, nombre, matricula, combustible, duenyo);
     }
 
-    get id(){
+    get getId(){
         return super.id();
     }
 
-    get nombre(){
+    get getNombre(){
         return super.nombre();
     }
 
-    get matricula(){
+    get getMatricula(){
         return super.matricula();
     }
 
-    get combustible(){
+    get getCombustible(){
         return super.combustible();
     }
 
-    get duenyo(){
+    get getDuenyo(){
         return super.duenyo();
     }
 
