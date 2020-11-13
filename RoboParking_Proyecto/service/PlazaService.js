@@ -36,15 +36,18 @@ export default class PlazaService{
         
         let cliente = this.servicioUsuario.encontrarPorDni(dni);
 
-        if(matricula === cliente.getVehiculo.getMatricula){
-            console.log(cliente.getVehiculo.getId);
-            if(this.encontrarPorNPlaza(cliente.getNPlaza).getVehiculo === null){
 
-                this.parking.encontrarPorNPlaza(cliente.getNPlaza).setVehiculo(cliente.getVehiculo);
-                return true;
+        if(cliente.getVehiculo !== undefined){
+            if(matricula === cliente.getVehiculo.getMatricula){
+                if(this.encontrarPorNPlaza(cliente.getNPlaza).getVehiculo === null){
     
+                    this.parking.encontrarPorNPlaza(cliente.getNPlaza).setVehiculo(cliente.getVehiculo);
+                    return true;
+        
+                }
             }
         }
+        
 
         return false;
     }
@@ -72,6 +75,7 @@ export default class PlazaService{
             this.servicioVehiculo.agregarVehiculo(v1);
             this.parking.encontrarPorNPlaza(nPlaza).setVehiculo(v1);
             this.parking.encontrarPorNPlaza(nPlaza).setPin(Math.round(Math.random() * (999999 - 100000) + 100000), 0);
+            this.parking.encontrarPorNPlaza(nPlaza).setEstado("Ocupada");
             return true;
 
         }
@@ -96,19 +100,14 @@ export default class PlazaService{
         
     }
 
-    retirarVehiculoAbonado(matricula, numeroPlaza, pinIntroducido){
+    retirarVehiculoAbonadoPlus(matricula, numeroPlaza, pinIntroducido){
 
         let plaza = this.encontrarPorNPlaza(numeroPlaza);
 
         if(plaza !== null){
-            console.log("a");
             if(plaza.getVehiculo.getMatricula === matricula){
-                console.log("b");
-                console.log(plaza.getPin);
-                console.log(pinIntroducido);
                 if(plaza.getPin === pinIntroducido){
-                    console.log("A");
-                    this.retirarVehiculo(numeroPlaza);
+                    this.retirarVehiculoAbonado(numeroPlaza);
                     return true;
                 }
             }
@@ -146,6 +145,12 @@ export default class PlazaService{
 
     retirarVehiculo(numeroPlaza){
         this.encontrarPorNPlaza(numeroPlaza).setVehiculo(null);
+        this.encontrarPorNPlaza(numeroPlaza).setEstado("Libre");
+    }
+
+    retirarVehiculoAbonado(numeroPlaza){
+        this.encontrarPorNPlaza(numeroPlaza).setVehiculo(null);
+        this.encontrarPorNPlaza(numeroPlaza).setEstado("Libre abonado");
     }
 
     comprobarMotocicletas(){

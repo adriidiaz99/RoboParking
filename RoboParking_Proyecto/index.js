@@ -31,6 +31,7 @@ let nombre = "", matricula = "", combustible= 0, duenyo="", nPlaza = 0, nPuertas
 let nombreUsuario = "", apellido1 = "", apellido2 = "", password="", dni="", nTarjetaCredito="", tipoAbono="", email = "";
 let dia1 = 0, mes1 = 0, anyo1 = 0, dia2 = 0, mes2 = 0, anyo2 = 0;
 let opt = 0, opt1 = 0;
+let cliente = null;
 let fechaSalida = new Date(), fechaAntigua = new Date(), fechaReciente = new Date();
 sUsuario.agregarUsuario(new Administrador(1, "Admin", "Admin", "Admin", "1234"));
 let vehiculo = new Vehiculo();
@@ -39,13 +40,11 @@ for (let i = 0; i < 45; i++){
     sPlaza.agregarPlaza(new Plaza(i, "", 0, "Libre"));
 }
 
-console.log(sPlaza.encontrarTodos().length);
-console.log(sPlaza.parking.parking[2].getNPlaza);
 console.log("Bienvenido al parking mejor posicionado en Sevilla\n\n");
 do{
     console.log(" RoboParking ");
     console.log("-------------\n\n");
-    console.log("[1] Depositar vehiculo\n[2] Retirar vehiculo\n[3] Agregar abonado\n[4] Depositar vehiculo abonado\n[5] Retirar coche abonado\n [6] Admin\n[0] Salir");
+    console.log("[1] Depositar vehiculo\n[2] Retirar vehiculo\n[3] Agregar abonado\n[4] Depositar vehiculo abonado\n[5] Retirar coche abonado\n[6] Admin\n[0] Salir");
 
     switch(opt = readline.questionInt()){
         case 1:
@@ -66,7 +65,7 @@ do{
                         console.log("\n\n");
                     }
                     else{
-                        console.log("Plaza ocupada");
+                        console.log("\n\nPlaza ocupada\n\n");
                     }
 
                     break;
@@ -85,7 +84,7 @@ do{
                         console.log("\n\n");
                     }
                     else{
-                        console.log("Plaza ocupada\n\n");
+                        console.log("\n\nPlaza ocupada\n\n");
                     }
 
                     break;
@@ -102,7 +101,7 @@ do{
                         console.log("\n\n");
                     }
                     else{
-                        console.log("Plaza ocupada");
+                        console.log("\n\nPlaza ocupada");
                         console.log("\n\n");
                     }
 
@@ -155,7 +154,7 @@ do{
                         console.log("\n\n");
                     }
                     else{
-                        console.log("Plaza ocupada");
+                        console.log("\n\nPlaza ocupada\n\n");
                     }
 
                     break;
@@ -175,7 +174,7 @@ do{
                         sPlaza.encontrarPorNPlaza(nPlaza).setEstado("Plaza de Abonado");
                     }
                     else{
-                        console.log("Plaza ocupada\n\n");
+                        console.log("\n\nPlaza ocupada\n\n");
                     }
 
                     break;
@@ -188,12 +187,12 @@ do{
                         sTicket.agregarTicket(new Ticket(0, nPlaza, matricula, sPlaza.encontrarPorNPlaza(nPlaza).getPin, duenyo));
                         console.log("¡Caravana aparcada!\n")
                         console.log("\nImprimiendo abono...\n\n");
-                        sUsuario.agregarUsuario(new Cliente(0, nombreUsuario, apellido1, apellido1, dni, nTarjetaCredito, tipoAbono, email, nPlaza, vehiculo));
+                        sUsuario.agregarUsuario(cliente = new Cliente(0, nombreUsuario, apellido1, apellido1, dni, nTarjetaCredito, tipoAbono, email, nPlaza, vehiculo));
                         sUsuario.imprimirAbono(sPlaza.encontrarPorNPlaza(nPlaza), sUsuario.encontrarPorDni(dni));
                         sPlaza.encontrarPorNPlaza(nPlaza).setEstado("Plaza de Abonado");
                     }
                     else{
-                        console.log("Plaza ocupada");
+                        console.log("\n\nPlaza ocupada");
                         console.log("\n\n");
                     }
 
@@ -208,9 +207,9 @@ do{
             dni = readline.question("Introduzca su dni");
             matricula = readline.question("Introduzca su matricula");
             if(sPlaza.aparcarVehiculoCliente(matricula, dni)){
-                console.log("¡Bienvenido siempre será su vehiculo!");
+                console.log("\n¡Bienvenido siempre será su vehiculo!\n");
             } else {
-                console.log("¡No se ha podido aparcar el vehiculo!");
+                console.log("\n¡No se ha podido aparcar el vehiculo!\n");
             }
         break;
 
@@ -219,7 +218,7 @@ do{
             pin= readline.questionInt("Introduzca su pin");
             nPlaza= readline.questionInt("Número de la plaza");
             matricula = readline.question("Introduzca su matricula");
-            if(sPlaza.retirarVehiculoAbonado(matricula, nPlaza, pin)){
+            if(sPlaza.retirarVehiculoAbonadoPlus(matricula, nPlaza, pin)){
                 console.log("Muy bien");
             } else{
                 console.log("Mal");
@@ -252,6 +251,17 @@ do{
                             mes2 = readline.questionInt("Introduce el mes");
                             dia2 = readline.questionInt("Introduce el dia");
                             sCobro.imprimirListaCobros(sCobro.encontrarEntreTramoFecha(new Date(anyo1, mes1, dia1), new Date(anyo2, mes2, dia2)));
+                            break;
+
+                        case 3:
+                            sUsuario.actualizarCobros();
+                            sUsuario.imprimirTodosAbonos();
+                            break;
+                        
+                        case 4:
+                            mes1 = readline.questionInt("¿Sobre qué mes desea hacer la consulta?");
+                            sUsuario.imprimirLista(sUsuario.encontrarCaducanEseMEs(mes1));
+
                             break;
                         
 

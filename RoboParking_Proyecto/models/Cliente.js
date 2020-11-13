@@ -10,6 +10,9 @@ export default class Cliente extends Usuario{
         this.tipoAbono = tipoAbono;
         this.nPlaza = nPlaza;
         this.email = email;
+        this.nCobros = 1;
+        this.fUltimoCobro = new Date();
+        this.activo = true;
     }
 
     get getId(){
@@ -52,6 +55,18 @@ export default class Cliente extends Usuario{
         return this.vehiculo;
     }
 
+    get getNCobros(){
+        return this.nCobros;
+    }
+
+    get getFUltimoCobro(){
+        return this.fUltimoCobro;
+    }
+
+    get isActivo(){
+        return this.isActivo;
+    }
+
     setId(newId){
         this.id = newId;
     }
@@ -86,6 +101,18 @@ export default class Cliente extends Usuario{
 
     setVehiculo(v1){
         this.vehiculo = v1;
+    }
+
+    setNCobros(newNCobro){
+        this.nCobros = newNCobro;
+    }
+
+    setFUltimoCobro(newFecha){
+        this.fUltimoCobro = newFecha;
+    }
+
+    setActivo(estado){
+        this.activo = estado;
     }
 
 }

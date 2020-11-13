@@ -1,3 +1,5 @@
+import Cliente from "../models/Cliente.js";
+
 export default class UsuarioRepository{
 
     constructor(){
@@ -62,5 +64,17 @@ export default class UsuarioRepository{
 
     encontrarTodos(){
         return this.listaUsuario;
+    }
+
+    encontrarTodosCliente(){
+    let lista = [];
+
+        this.listaUsuario.forEach(element => {
+            if(element instanceof Cliente){
+                lista.push(element);
+            }
+        });
+
+    return lista;
     }
 }
