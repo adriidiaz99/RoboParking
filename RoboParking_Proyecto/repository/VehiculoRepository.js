@@ -8,15 +8,15 @@ export default class VehiculoRepository{
 
         let ultimoId = 0;
 
-        parking.forEach(element => {
+        this.listaVehiculos.forEach(element => {
             if(element.getId > ultimoId)
                 ultimoId = element.getId;
         });
 
-        if(ultimoId = 0)
+        if(ultimoId == 0)
             return 1;
 
-        return ultimoId;
+        return ultimoId+1;
     }
 
     agregarVehiculo(v1){

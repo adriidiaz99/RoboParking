@@ -44,14 +44,20 @@ export default class UsuarioRepository{
     }
 
     encontrarPorDni(dni){
+        let usuario = null;
+
         if(this.listaUsuario.length > 0){
             for(let i = 0; i < this.listaUsuario.length; i++){
                 if(dni === this.listaUsuario[i].getDni){
-                    return this.listaUsuario[i];
+                    usuario = this.listaUsuario[i];
                 }
             }
         }
-        return 0;
+
+        if(usuario === null)
+            return 0;
+        else
+            return usuario;
     }
 
     encontrarTodos(){

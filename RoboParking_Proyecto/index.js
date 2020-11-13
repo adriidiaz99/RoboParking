@@ -25,13 +25,14 @@ import CobroService from "./service/CobroService.js";
 let sVehiculo = new VehiculoService(new VehiculoRepository());
 let sUsuario = new UsuarioService(new UsuarioRepository());
 let sTicket = new TicketService(new TicketRepository());
-let sPlaza = new PlazaService(new PlazaRepository(), sTicket, sUsuario);
+let sPlaza = new PlazaService(new PlazaRepository(), sTicket, sUsuario, sVehiculo);
 let sCobro = new CobroService(new CobroRepository());
 let nombre = "", matricula = "", combustible= 0, duenyo="", nPlaza = 0, nPuertas = 0, pin = 0;
 let nombreUsuario = "", apellido1 = "", apellido2 = "", password="", dni="", nTarjetaCredito="", tipoAbono="", email = "";
+let dia1 = 0, mes1 = 0, anyo1 = 0, dia2 = 0, mes2 = 0, anyo2 = 0;
 let opt = 0, opt1 = 0;
-let fechaSalida = new Date();
-
+let fechaSalida = new Date(), fechaAntigua = new Date(), fechaReciente = new Date();
+sUsuario.agregarUsuario(new Administrador(1, "Admin", "Admin", "Admin", "1234"));
 let vehiculo = new Vehiculo();
 
 for (let i = 0; i < 45; i++){
@@ -40,12 +41,11 @@ for (let i = 0; i < 45; i++){
 
 console.log(sPlaza.encontrarTodos().length);
 console.log(sPlaza.parking.parking[2].getNPlaza);
-
+console.log("Bienvenido al parking mejor posicionado en Sevilla\n\n");
 do{
     console.log(" RoboParking ");
     console.log("-------------\n\n");
-    console.log("Bienvenido al parking mejor posicionado en Sevilla\n\n"
-    +"[1] Depositar vehiculo\n[2] Retirar vehiculo\n[3] Agregar abonado\n[4] Depositar vehiculo abonado\n[5] ");
+    console.log("[1] Depositar vehiculo\n[2] Retirar vehiculo\n[3] Agregar abonado\n[4] Depositar vehiculo abonado\n[5] Retirar coche abonado\n [6] Admin\n[0] Salir");
 
     switch(opt = readline.questionInt()){
         case 1:
@@ -116,7 +116,7 @@ do{
             nPlaza = readline.questionInt("En qué plaza desea aparcarlo?");
             pin = readline.questionInt("Pin: ");
             if(sPlaza.comprobarRetiradaVehiculo(matricula,nPlaza, pin)){
-                fechaSalida = new Date(2028,11,17);
+                fechaSalida = new Date();
                 console.log("Perfecto\n");
                 console.log("La fecha de salida es: " +fechaSalida +"\n");
                 console.log("El total del importe a pagar es " +sPlaza.totalAPagar(nPlaza, matricula, fechaSalida) +"\n");
@@ -151,6 +151,7 @@ do{
                     if(sPlaza.aparcarVehiculo(vehiculo = new Motocicleta(0, nombre, matricula, combustible, duenyo), nPlaza = readline.questionInt("En qué plaza desea aparcarlo?"))){
                         sUsuario.agregarUsuario(new Cliente(0, nombreUsuario, apellido1, apellido1, dni, nTarjetaCredito, tipoAbono, email, nPlaza, vehiculo));
                         sUsuario.imprimirAbono(sPlaza.encontrarPorNPlaza(nPlaza), sUsuario.encontrarPorDni(dni));
+                        sPlaza.encontrarPorNPlaza(nPlaza).setEstado("Plaza de Abonado");
                         console.log("\n\n");
                     }
                     else{
@@ -171,6 +172,7 @@ do{
                         console.log("\nImprimiendo abono...\n\n");
                         sUsuario.agregarUsuario(new Cliente(0, nombreUsuario, apellido1, apellido1, dni, nTarjetaCredito, tipoAbono, email, nPlaza, vehiculo));
                         sUsuario.imprimirAbono(sPlaza.encontrarPorNPlaza(nPlaza), sUsuario.encontrarPorDni(dni));
+                        sPlaza.encontrarPorNPlaza(nPlaza).setEstado("Plaza de Abonado");
                     }
                     else{
                         console.log("Plaza ocupada\n\n");
@@ -188,6 +190,7 @@ do{
                         console.log("\nImprimiendo abono...\n\n");
                         sUsuario.agregarUsuario(new Cliente(0, nombreUsuario, apellido1, apellido1, dni, nTarjetaCredito, tipoAbono, email, nPlaza, vehiculo));
                         sUsuario.imprimirAbono(sPlaza.encontrarPorNPlaza(nPlaza), sUsuario.encontrarPorDni(dni));
+                        sPlaza.encontrarPorNPlaza(nPlaza).setEstado("Plaza de Abonado");
                     }
                     else{
                         console.log("Plaza ocupada");
@@ -205,9 +208,9 @@ do{
             dni = readline.question("Introduzca su dni");
             matricula = readline.question("Introduzca su matricula");
             if(sPlaza.aparcarVehiculoCliente(matricula, dni)){
-                console.log("Hasta luego, que disfrute del paseo");
+                console.log("¡Bienvenido siempre será su vehiculo!");
             } else {
-                console.log("No se ha podido retirar el coche");
+                console.log("¡No se ha podido aparcar el vehiculo!");
             }
         break;
 
@@ -223,6 +226,45 @@ do{
             }
 
         break;
+
+        case 6:
+            nombre = readline.question("Introduzca nombre de admin: ");
+            password = readline.question("Contraseña: ");
+            if(sUsuario.logearAdministrador(nombre, password)){
+                console.log("¡Bienvenido admin!\n\n");
+                do{
+                    console.log("[1] Estado del parking\n[2] Facturación\n[3] Consulta de abonados\n[4] Caducidad de abonos\n[0] Cerrar sesión admin");
+                    opt1 = readline.questionInt("");
+                    switch(opt1){
+                        case 1:
+                            console.log("\n\n Estado del parking \n--------------");
+                            sPlaza.mostrarEstadoPlazas();
+                            break;
+                        
+                        case 2:
+                            console.log("\n\nFacturación\n---------\n");
+                            console.log("Empecemos con la fecha más reciente\n\n");
+                            anyo1 = readline.questionInt("Introduce el año");
+                            mes1 = readline.questionInt("Introduce el mes");
+                            dia1 = readline.questionInt("Introduce el dia");
+                            console.log("\Ahora con la fecha más antigua\n\n");
+                            anyo2 = readline.questionInt("Introduce el año");
+                            mes2 = readline.questionInt("Introduce el mes");
+                            dia2 = readline.questionInt("Introduce el dia");
+                            sCobro.imprimirListaCobros(sCobro.encontrarEntreTramoFecha(new Date(anyo1, mes1, dia1), new Date(anyo2, mes2, dia2)));
+                            break;
+                        
+
+
+                    }
+                
+
+                }while(opt1 != 0);
+                
+            } else {
+                console.log("Casi guapo");
+            }
+            break;
         
     }
 

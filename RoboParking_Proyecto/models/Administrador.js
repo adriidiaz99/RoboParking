@@ -8,43 +8,47 @@ export default class Administrador extends Usuario{
     }
 
     get getId(){
-        return super.id();
+        return this.id;
     }
 
     get getNombre(){
-        return super.nombre();
+        return this.nombre;
     }
 
     get getApellido1(){
-        return super.apellido1();
+        return this.apellido1;
     }
 
     get getApellido2(){
-        return super.apellido2();
+        return this.apellido2;
     }
 
     get getPassword(){
-        return super.password();
+        return this.password;
     }
 
     setId(newId){
-        super.setId(newId);
+        this.id = newId;
     }
 
     setNombre(newNombre){
-        super.setNombre(newNombre);
+        this.nombre = newNombre;
     }
 
-    setApellido1(newApellido){
-        super.setApellido1(newApellido);
+    setmatricula(newMatricula){
+        this.matricula = newMatricula;
     }
 
-    setApellido2(newApellido){
-        super.setApellido2(newApellido);
+    setCombustible(newCombustible){
+        this.combustible = newCombustible;
+    }
+
+    setDuenyo(newDuenyo){
+        this.duenyo = newDuenyo;
     }
 
     setPassword(newPassword){
-        super.setPassword(newPassword);
+        this.password = newPassword;
     }
 
 }

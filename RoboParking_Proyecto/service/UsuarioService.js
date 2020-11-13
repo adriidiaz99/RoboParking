@@ -1,3 +1,5 @@
+import Administrador from "../models/Administrador.js";
+
 export default class UsuarioService{
 
     constructor(usuarioRepository){
@@ -37,6 +39,22 @@ export default class UsuarioService{
         console.log("- Nombre del dueño: " +cliente.getNombre);
         console.log("- Dni: " +cliente.getDni);
         console.log("- Abono: " +cliente.getTipoAbono);
+    }
+
+    logearAdministrador(nombre, password){
+        let comprobar = false;
+
+        this.encontrarTodos().forEach(element => {
+            if(element instanceof Administrador){
+                if(nombre === element.getNombre){
+                    if(password === element.getPassword){
+                        comprobar = true;
+                    }
+                }
+            }
+        });
+
+        return comprobar;
     }
 
 }

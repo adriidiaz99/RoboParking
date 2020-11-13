@@ -5,10 +5,11 @@ import PlazaRepository from "../repository/PlazaRepository.js"
 
 export default class PlazaService{
 
-    constructor(parking, servicioTicket, servicioUsuario){
+    constructor(parking, servicioTicket, servicioUsuario, servicioVehiculo){
         this.parking = parking;
         this.servicioTicket = servicioTicket;
         this.servicioUsuario = servicioUsuario;
+        this.servicioVehiculo = servicioVehiculo;
     }
 
     agregarPlaza(v1){
@@ -36,9 +37,10 @@ export default class PlazaService{
         let cliente = this.servicioUsuario.encontrarPorDni(dni);
 
         if(matricula === cliente.getVehiculo.getMatricula){
-            if(this.encontrarPorNPlaza(cliente.getNPlaza).getVehiculo.getId === 0){
+            console.log(cliente.getVehiculo.getId);
+            if(this.encontrarPorNPlaza(cliente.getNPlaza).getVehiculo === null){
 
-                this.parking.encontrarPorNPlaza(cliente.getNPlaza).setVehiculo(v1);
+                this.parking.encontrarPorNPlaza(cliente.getNPlaza).setVehiculo(cliente.getVehiculo);
                 return true;
     
             }
@@ -67,6 +69,7 @@ export default class PlazaService{
 
         if(comprobar && this.encontrarPorNPlaza(nPlaza).getVehiculo.getId === 0){
 
+            this.servicioVehiculo.agregarVehiculo(v1);
             this.parking.encontrarPorNPlaza(nPlaza).setVehiculo(v1);
             this.parking.encontrarPorNPlaza(nPlaza).setPin(Math.round(Math.random() * (999999 - 100000) + 100000), 0);
             return true;
@@ -122,7 +125,7 @@ export default class PlazaService{
         let miliSegundosDeposito = Date.parse(ticket.getFechaDeposito);
         let miliSegundosRetiro = Date.parse(fechaSalida);
 
-        let resultado = Math.round((miliSegundosRetiro - miliSegundosDeposito)/60000, 0);
+        let resultado = Math.round((miliSegundosRetiro - miliSegundosDeposito)/60000, 0)+1;
 
         if(plaza.getVehiculo instanceof Turismo){
             resultado = resultado * minutoTurismo;
