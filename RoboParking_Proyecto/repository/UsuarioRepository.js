@@ -13,10 +13,10 @@ export default class UsuarioRepository{
                 ultimoId = element.getId;
         });
 
-        if(ultimoId = 0)
+        if(ultimoId == 0)
             return 1;
 
-        return ultimoId;
+        return ultimoId++;
     }
 
     agregarUsuario(v1){
@@ -36,6 +36,17 @@ export default class UsuarioRepository{
         if(this.listaUsuario.length > 0){
             for(let i = 0; i < this.listaUsuario.length; i++){
                 if(id === this.listaUsuario[i].getId){
+                    return this.listaUsuario[i];
+                }
+            }
+        }
+        return 0;
+    }
+
+    encontrarPorDni(dni){
+        if(this.listaUsuario.length > 0){
+            for(let i = 0; i < this.listaUsuario.length; i++){
+                if(dni === this.listaUsuario[i].getDni){
                     return this.listaUsuario[i];
                 }
             }

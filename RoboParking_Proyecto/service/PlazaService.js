@@ -5,9 +5,10 @@ import PlazaRepository from "../repository/PlazaRepository.js"
 
 export default class PlazaService{
 
-    constructor(parking, servicioTicket){
+    constructor(parking, servicioTicket, servicioUsuario){
         this.parking = parking;
         this.servicioTicket = servicioTicket;
+        this.servicioUsuario = servicioUsuario;
     }
 
     agregarPlaza(v1){
@@ -28,6 +29,22 @@ export default class PlazaService{
 
     encontrarTodos(){
         return this.parking.encontrarTodos();
+    }
+
+    aparcarVehiculoCliente(matricula, dni){
+        
+        let cliente = this.servicioUsuario.encontrarPorDni(dni);
+
+        if(matricula === cliente.getVehiculo.getMatricula){
+            if(this.encontrarPorNPlaza(cliente.getNPlaza).getVehiculo.getId === 0){
+
+                this.parking.encontrarPorNPlaza(cliente.getNPlaza).setVehiculo(v1);
+                return true;
+    
+            }
+        }
+
+        return false;
     }
 
     aparcarVehiculo(v1, nPlaza){
@@ -59,7 +76,7 @@ export default class PlazaService{
         return false;
     }
 
-    retirarVehiculo(matricula, numeroPlaza, pinIntroducido){
+    comprobarRetiradaVehiculo(matricula, numeroPlaza, pinIntroducido){
 
         let plaza = this.encontrarPorNPlaza(numeroPlaza);
 
@@ -67,7 +84,6 @@ export default class PlazaService{
             console.log(plaza.getVehiculo.getMatricula);
             if(plaza.getVehiculo.getMatricula === matricula){
                 if(plaza.getPin === pinIntroducido){
-                    this.encontrarPorNPlaza(numeroPlaza).setVehiculo(null);
                     return true;
                 }
             }
@@ -75,6 +91,58 @@ export default class PlazaService{
             return false;
         }
         
+    }
+
+    retirarVehiculoAbonado(matricula, numeroPlaza, pinIntroducido){
+
+        let plaza = this.encontrarPorNPlaza(numeroPlaza);
+
+        if(plaza !== null){
+            console.log("a");
+            if(plaza.getVehiculo.getMatricula === matricula){
+                console.log("b");
+                console.log(plaza.getPin);
+                console.log(pinIntroducido);
+                if(plaza.getPin === pinIntroducido){
+                    console.log("A");
+                    this.retirarVehiculo(numeroPlaza);
+                    return true;
+                }
+            }
+        }
+
+        return false;
+        
+    }
+
+    totalAPagar(nPlaza, matricula, fechaSalida){
+        let plaza = this.encontrarPorNPlaza(nPlaza);
+        let ticket = this.servicioTicket.encontrarTicketMasReciente(nPlaza, matricula);
+        let minutoTurismo = 0.12, minutoMotocicletas = 0.08, minutoCaravana = 0.45;
+        let miliSegundosDeposito = Date.parse(ticket.getFechaDeposito);
+        let miliSegundosRetiro = Date.parse(fechaSalida);
+
+        let resultado = Math.round((miliSegundosRetiro - miliSegundosDeposito)/60000, 0);
+
+        if(plaza.getVehiculo instanceof Turismo){
+            resultado = resultado * minutoTurismo;
+        }
+
+        if(plaza.getVehiculo instanceof Caravana){
+            resultado = resultado * minutoMotocicletas;
+        }
+
+        if(plaza.getVehiculo instanceof Motocicleta){
+            resultado = resultado * minutoCaravana;
+        }
+
+        return resultado;
+
+
+    }
+
+    retirarVehiculo(numeroPlaza){
+        this.encontrarPorNPlaza(numeroPlaza).setVehiculo(null);
     }
 
     comprobarMotocicletas(){
@@ -152,6 +220,12 @@ export default class PlazaService{
 
     imprimirTicketMasReciente(nPlaza, matricula){
         this.servicioTicket.imprimirTicket(this.servicioTicket.encontrarTicketMasReciente(nPlaza, matricula));
+    }
+
+    mostrarEstadoPlazas(){
+        this.encontrarTodos().forEach(element => {
+            console.log("Plaza Nº " +element.getNPlaza +" : " +element.getEstado);
+        });
     }
 
 }

@@ -13,10 +13,10 @@ export default class CobroRepository{
                 ultimoId = element.id();
         });
 
-        if(ultimoId = 0)
+        if(ultimoId == 0)
             return 1;
 
-        return ultimoId;
+        return ultimoId++;
     }
 
     agregarCobro(v1){

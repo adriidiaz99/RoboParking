@@ -2,12 +2,12 @@ import Vehiculo from "./Vehiculo.js";
 
 export default class Plaza{
 
-    constructor(nPlaza, cliente, pin, ocupado){
+    constructor(nPlaza, cliente, pin, estado){
         this.nPlaza = nPlaza;
         this.vehiculo = new Vehiculo(0, "", "", 0, "");
         this.cliente = cliente;
         this.pin = pin;
-        this.ocupado = ocupado;
+        this.estado = estado;
     }
 
     get getNPlaza(){
@@ -26,8 +26,8 @@ export default class Plaza{
         return this.pin;
     }
 
-    get isOcupado(){
-        return this.ocupado;
+    get getEstado(){
+        return this.estado;
     }
 
     setNPlaza(newNPlaza){
@@ -46,8 +46,8 @@ export default class Plaza{
         this.pin = newPin;
     }
 
-    setIsOcupado(estado){
-        this.ocupado = estado;
+    setEstado(newEstado){
+        this.estado = newEstado;
     }
 
 

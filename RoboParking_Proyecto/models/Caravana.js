@@ -7,43 +7,43 @@ export default class Caravana extends Vehiculo{
     }
 
     get getId(){
-        return super.id();
+        return this.id;
     }
 
     get getNombre(){
-        return super.nombre();
+        return this.nombre;
     }
 
     get getMatricula(){
-        return super.matricula();
+        return this.matricula;
     }
 
     get getCombustible(){
-        return super.combustible();
+        return this.combustible;
     }
 
     get getDuenyo(){
-        return super.duenyo();
+        return this.duenyo;
     }
 
     setId(newId){
-        super.setId(newId);
+        this.id = newId;
     }
 
     setNombre(newNombre){
-        super.setNombre(newNombre);
+        this.nombre = newNombre;
     }
 
     setmatricula(newMatricula){
-        super.setMatricula(newMatricula);
+        this.matricula = newMatricula;
     }
 
     setCombustible(newCombustible){
-        super.setCombustible(newCombustible);
+        this.combustible = newCombustible;
     }
 
     setDuenyo(newDuenyo){
-        this.setDuenyo(newDuenyo);
+        this.duenyo = newDuenyo;
     }
 
 }

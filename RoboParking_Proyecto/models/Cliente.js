@@ -2,9 +2,14 @@ import Usuario from "./Usuario.js"
 
 export default class Cliente extends Usuario{
 
-    constructor(id, nombre, apellido1, apellido2, password, vehiculo){
-        super(id, nombre, apellido1, apellido2, password);
+    constructor(id, nombre, apellido1, apellido2, dni, nTarjetaCredito, tipoAbono, email, nPlaza, vehiculo){
+        super(id, nombre, apellido1, apellido2);
         this.vehiculo = vehiculo;
+        this.dni = dni;
+        this.nTarjetaCredito = nTarjetaCredito;
+        this.tipoAbono = tipoAbono;
+        this.nPlaza = nPlaza;
+        this.email = email;
     }
 
     get getId(){
@@ -23,8 +28,24 @@ export default class Cliente extends Usuario{
         return this.apellido2;
     }
 
-    get getPassword(){
-        return this.password;
+    get getDni(){
+        return this.dni;
+    }
+
+    get getNTarjetaCredito(){
+        return this.nTarjetaCredito;
+    }
+
+    get getTipoAbono(){
+        return this.tipoAbono;
+    }
+
+    get getEmail(){
+        return this.email;
+    }
+
+    get getNPlaza(){
+        return this.nPlaza;
     }
 
     get getVehiculo(){
@@ -32,27 +53,39 @@ export default class Cliente extends Usuario{
     }
 
     setId(newId){
-        this.setId(newId);
+        this.id = newId;
+    }
+
+    setNPlaza(newNPlaza){
+        this.nPlaza = newNPlaza;
     }
 
     setNombre(newNombre){
-        this.setNombre(newNombre);
+        this.nombre = newNombre;
     }
 
     setApellido1(newApellido){
-        this.setApellido1(newApellido);
+        this.apellido1 = newApellido;
     }
 
     setApellido2(newApellido){
-        this.setApellido2(newApellido);
+        this.apellido2 = newApellido;
     }
 
-    setPassword(newPassword){
-        this.setPassword(newPassword);
+    setNTarjetaCredito(n){
+        this.nTarjetaCredito = n;
     }
 
-    setVehiculos(v1){
-        this.vehiculos = v1;
+    setTipoAbono(n){
+        this.tipoAbono = n;
+    }
+
+    setEmail(n){
+        this.Email = n;
+    }
+
+    setVehiculo(v1){
+        this.vehiculo = v1;
     }
 
 }

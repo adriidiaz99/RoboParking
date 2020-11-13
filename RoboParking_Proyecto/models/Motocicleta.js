@@ -27,23 +27,27 @@ export default class Motocicleta extends Vehiculo{
     }
 
     setId(newId){
-        super.setId(newId);
+        this.id = newId;
     }
 
     setNombre(newNombre){
-        super.setNombre(newNombre);
+        this.nombre = newNombre;
     }
 
     setmatricula(newMatricula){
-        super.setMatricula(newMatricula);
+        this.matricula = newMatricula;
     }
 
     setCombustible(newCombustible){
-        super.setCombustible(newCombustible);
+        this.combustible = newCombustible;
     }
 
     setDuenyo(newDuenyo){
-        this.setDuenyo(newDuenyo);
+        this.duenyo = newDuenyo;
+    }
+
+    setDuenyo(newDuenyo){
+        this.duenyo = newDuenyo;
     }
     
 }

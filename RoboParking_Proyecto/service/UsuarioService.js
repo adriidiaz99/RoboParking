@@ -20,8 +20,23 @@ export default class UsuarioService{
         return this.usuarioRepository.encontrarPorId(id);
     }
 
+    encontrarPorDni(dni){
+        return this.usuarioRepository.encontrarPorDni(dni);
+    }
+
     encontrarTodos(){
         return this.usuarioRepository.encontrarTodos();
+    }
+
+    imprimirAbono(plaza, cliente){
+
+        console.log("Abono RoboParking\n- - - - - - - - -\n");
+        console.log("- Aparcado en la plaza nº " +plaza.getNPlaza);
+        console.log("- Con matricula " +cliente.getVehiculo.getMatricula);
+        console.log("- Pin de retiro: " +plaza.getPin);
+        console.log("- Nombre del dueño: " +cliente.getNombre);
+        console.log("- Dni: " +cliente.getDni);
+        console.log("- Abono: " +cliente.getTipoAbono);
     }
 
 }

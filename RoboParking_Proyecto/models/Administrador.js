@@ -3,7 +3,8 @@ import Usuario from "./Usuario.js"
 export default class Administrador extends Usuario{
 
     constructor(id, nombre, apellido1, apellido2, password){
-        super(id, nombre, apellido1, apellido2, password);
+        super(id, nombre, apellido1, apellido2);
+        this.password = password;
     }
 
     get getId(){
